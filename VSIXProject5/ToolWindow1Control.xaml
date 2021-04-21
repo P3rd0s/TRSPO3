@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="VSIXProject5.ToolWindow1Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="500"
+             Name="MyToolWindow">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0"  Click="Button1_Click" x:Name="Refresh" Margin="10,10,5,10" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Background="#FFF69DED" BorderBrush="#FFE52DE7" Foreground="White">
+            <ContentControl RenderTransformOrigin="0.5,0.5">
+                <ContentControl.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </ContentControl.RenderTransform>
+                Refresh Data
+            </ContentControl>
+        </Button>
+
+        <ListView Grid.Column="0" Grid.Row="1" x:Name="Stat" Margin="5,10,5,10" TextBlock.Foreground="Black" FontWeight="Light" BorderBrush="#FF9B00A2">
+            <ListView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFDC34CB" Offset="1"/>
+                    <GradientStop Color="#FFF3BAED"/>
+                </LinearGradientBrush>
+            </ListView.Background>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding= "{Binding FunctionName}"      Header="Function"       Width="185"/>
+                    <GridViewColumn DisplayMemberBinding= "{Binding KeywordCount}"      Header="Keywords"       Width="100"/>
+                    <GridViewColumn DisplayMemberBinding= "{Binding LinesCount}"        Header="Lines"         Width="100"/>
+                    <GridViewColumn DisplayMemberBinding= "{Binding WithoutComments}"   Header="Lines without comments"          Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+
+
+</UserControl>
